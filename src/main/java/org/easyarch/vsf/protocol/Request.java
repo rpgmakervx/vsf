@@ -1,6 +1,7 @@
 package org.easyarch.vsf.protocol;
 
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  * Created by xingtianyu(code4j) on 2017-8-21.
@@ -58,5 +59,9 @@ public class Request {
                 ", paramTypes=" + Arrays.toString(paramTypes) +
                 ", paramVals=" + Arrays.toString(paramVals) +
                 '}';
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Date(4510218488410l));
     }
 }

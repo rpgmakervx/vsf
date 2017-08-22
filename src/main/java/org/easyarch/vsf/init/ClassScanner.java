@@ -3,6 +3,8 @@ package org.easyarch.vsf.init;
 import org.apache.logging.log4j.core.util.FileUtils;
 import org.easyarch.vsf.annotation.RPCEntity;
 import org.easyarch.vsf.annotation.Implement;
+import org.easyarch.vsf.cache.Cache;
+import org.easyarch.vsf.cache.ServiceCache;
 import org.easyarch.vsf.kits.ResourceKits;
 import org.easyarch.vsf.kits.StringKits;
 import org.easyarch.vsf.kits.file.FileKits;
@@ -28,7 +30,7 @@ public class ClassScanner {
     public static final String CLASS = ".class";
     public static final String POINT = ".";
 
-    public Map<String,Object> interfaceCache = new HashMap<>();
+    private Cache<String,Class> cache = new ServiceCache();
 
     private static boolean scaned = false;
 
@@ -67,13 +69,6 @@ public class ClassScanner {
             return;
         }
 
-//        if (ANY.equals(packagePath)){
-//            scan();
-//            return;
-//        }
-//        if(packagePath.contains(ANY)){
-//            packagePath = packagePath.replaceAll("\\"+POINT+ANY,"");
-//        }
         String copyPath = packagePath.replace(POINT,File.separator);
         String classpath = CLASSPATH + copyPath + "/";
         System.out.println("classpath:"+classpath);
@@ -110,7 +105,7 @@ public class ClassScanner {
             if (StringKits.isBlank(mapper.lookup())){
                 lookup = clazz.getName();
             }
-            interfaceCache.put(lookup,clazz);
+            cache.set(lookup,clazz);
         }
     }
 

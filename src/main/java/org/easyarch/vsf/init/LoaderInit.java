@@ -11,7 +11,11 @@ public class LoaderInit implements Init {
 
     @Override
     public void init() {
-        ClassScanner scanner = new ClassScanner();
-//        Set<Class> set = scanner.scanImplementByJar(ResourceKits.getClassPath());
+        ClassScanner scan = new ClassScanner();
+        try {
+            scan.scan("org");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

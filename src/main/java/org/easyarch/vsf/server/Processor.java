@@ -11,13 +11,13 @@ import org.easyarch.vsf.server.handler.BaseInitialHandler;
 /**
  * Created by xingtianyu(code4j) on 2017-8-20.
  */
-public class Server {
+public class Processor {
 
+    private EventLoopGroup bossGroup = new NioEventLoopGroup(Runtime.getRuntime().availableProcessors() * 8);
+    private EventLoopGroup workerGroup = new NioEventLoopGroup(Runtime.getRuntime().availableProcessors() * 8);
 
     public void start(int port) {
         System.out.println("正在启动服务。。。,服务端口:" + port);
-        EventLoopGroup bossGroup = new NioEventLoopGroup(Runtime.getRuntime().availableProcessors() * 8);
-        EventLoopGroup workerGroup = new NioEventLoopGroup(Runtime.getRuntime().availableProcessors() * 8);
         ServerBootstrap b = new ServerBootstrap();
         ChannelFuture f = null;
         try {
